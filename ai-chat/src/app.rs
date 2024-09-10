@@ -1,7 +1,7 @@
 use leptos::*;
 use leptos_meta::*;
 
-use crate::model::conversation::{Conversation, Message};
+use crate::{api::converse, model::conversation::{Conversation, Message}};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -20,8 +20,10 @@ pub fn App() -> impl IntoView {
             c.messages.push(user_message);
         });
 
-        // TODO converse
-        async move {}
+        // Function implemented in the server side logic but we invoke this in the client side
+        // the client is automatically generating code to make an HTTP request pointing to the Back-end API expose
+        // by actix-web and all is happening behinde the scene, so everything is abstracted from us and this is very cool!!
+        converse(conversation.get())
     });
 
     view! {
