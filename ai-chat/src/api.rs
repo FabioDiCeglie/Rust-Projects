@@ -1,6 +1,6 @@
 use crate::model::conversation::Conversation;
-use leptos::*;
 use cfg_if::cfg_if;
+use leptos::*;
 
 #[server(Converse, "/api")]
 pub async fn converse(prompt: Conversation) -> Result<String, ServerFnError> {
@@ -11,11 +11,10 @@ pub async fn converse(prompt: Conversation) -> Result<String, ServerFnError> {
     use llm::KnownModel;
 
     // Your logic here
-    let model = extract(|data: Data<Llama>, _connection: ConnectionInfo| async {
-        data.into_inner()
-    })
-    .await
-    .unwrap();
+    let model =
+        extract(|data: Data<Llama>, _connection: ConnectionInfo| async { data.into_inner() })
+            .await
+            .unwrap();
 
     let character_name = "### Assistant";
     let user_name = "### Human";
@@ -39,7 +38,6 @@ pub async fn converse(prompt: Conversation) -> Result<String, ServerFnError> {
     let mut res = String::new();
     let mut rng = rand::thread_rng();
     let mut buf = String::new();
-
 
     // this usually is stored in the back-end and not always starting a new session here.
     let mut session = model.start_session(Default::default());
@@ -67,7 +65,7 @@ pub async fn converse(prompt: Conversation) -> Result<String, ServerFnError> {
 cfg_if! {
     if #[cfg(feature = "ssr")] {
         use std::convert::Infallible;
-        
+
         fn inference_callback<'a>(
             stop_sequence: String,
             buf: &'a mut String,
@@ -75,7 +73,7 @@ cfg_if! {
         ) -> impl FnMut(llm::InferenceResponse) -> Result<llm::InferenceFeedback, Infallible> + 'a {
             use llm::InferenceFeedback::Halt;
             use llm::InferenceFeedback::Continue;
-            
+
             move |resp| -> Result<llm::InferenceFeedback, Infallible> {
                 match resp {
                     llm::InferenceResponse::InferredToken(t) => {
@@ -88,7 +86,7 @@ cfg_if! {
                             buf.push_str(t.as_str());
                             return Ok(Continue);
                         }
-                        
+
                         if buf.is_empty() {
                             out_str.push_str(&t);
                         } else {
