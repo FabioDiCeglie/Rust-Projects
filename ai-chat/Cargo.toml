@@ -26,7 +26,7 @@ ssr = [
   "dep:actix-files",
   "dep:actix-web",
   "dep:leptos_actix",
-  "dep::llm",
+  "dep:llm",
   "leptos/ssr",
   "leptos_meta/ssr",
   "leptos_router/ssr",
