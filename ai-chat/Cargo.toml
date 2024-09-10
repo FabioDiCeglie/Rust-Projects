@@ -35,6 +35,9 @@ ssr = [
   "leptos_meta/ssr",
   "leptos_router/ssr",
 ]
+# Sets the optimization level to 3 for maximum performance. This makes the compiler generate the most optimized code, which can improve runtime efficiency at the cost of longer compile times.
+[profile.dev.package.ggml-sys]
+opt-level = 3
 
 # Defines a size-optimized profile for the WASM bundle in release mode
 [profile.wasm-release]
