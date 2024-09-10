@@ -13,6 +13,11 @@ async fn main() -> std::io::Result<()> {
     let routes = generate_route_list(App);
     println!("listening on http://{}", &addr);
 
+    #[get("./style.css")]
+    async fn css() -> impl Responder {
+        actix_files::NamedFile::open_async("./style/output.css").await
+    }
+
     let model = web::Data::new(get_language_model());
     HttpServer::new(move || {
         let leptos_options = &conf.leptos_options;
@@ -20,6 +25,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .app(model.clone())
+            .service(css)
             // serve JS/WASM/CSS from `pkg`
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
             // serve other assets from the `assets` directory
