@@ -26,6 +26,31 @@ pub fn App() -> impl IntoView {
         converse(conversation.get())
     });
 
+    // Create an effect that triggers when there's a new input in the `send` action.
+    // This effect adds a "typing" message to the conversation when input is detected.
+    create_effect(move |_| {
+        if let Some(_) = send.input().get(){
+            let model_message = Message {
+                text: String::from("..."),
+                user: false,
+            };
+
+            set_conversation.update(move |c|{
+                c.messages.push(model_message);
+            });
+        }
+    });
+    
+    // Create an effect that triggers when a new value is available from the `send` action.
+    // This effect updates the last message in the conversation with the response received.
+    create_effect(move |_| {
+        if let Some(Ok(response)) = send.value().get(){
+            set_conversation.update(move |c|{
+                c.messages.last_mut().unwrap().text = response
+            });
+        }
+    });
+
     view! {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
