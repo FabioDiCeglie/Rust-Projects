@@ -1,3 +1,5 @@
+use cfg_if::cfg_if;
+
 #[cfg(feature = "ssr")]
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -24,7 +26,7 @@ async fn main() -> std::io::Result<()> {
         let site_root = &leptos_options.site_root;
 
         App::new()
-            .app(model.clone())
+            .app_data(model.clone())
             .service(css)
             // serve JS/WASM/CSS from `pkg`
             .service(Files::new("/pkg", format!("{site_root}/pkg")))
@@ -55,7 +57,7 @@ async fn favicon(
 
 cfg_if! {
     if #[cfg(feature = "ssr")] {
-        use llm::models:Llama;
+        use llm::models::Llama;
         use actix_web::*;
         use std::env;
         use dotenv::dotenv;
