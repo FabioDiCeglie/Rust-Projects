@@ -1,6 +1,9 @@
 use leptos::*;
 use leptos_meta::*;
 
+mod components;
+use components::chat_area::ChatArea;
+use components::type_area::TypeArea;
 use crate::{api::converse, model::conversation::{Conversation, Message}};
 
 #[component]
@@ -40,7 +43,7 @@ pub fn App() -> impl IntoView {
             });
         }
     });
-    
+
     // Create an effect that triggers when a new value is available from the `send` action.
     // This effect updates the last message in the conversation with the response received.
     create_effect(move |_| {
