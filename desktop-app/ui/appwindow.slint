@@ -2,8 +2,8 @@ import { Button, VerticalBox, LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
 
-    property <string> results: "";
-    callback divide-income(string);
+    in property <string> results: "";
+    callback divide_income(string);
 
     background: #313e50;
     GridLayout {
@@ -31,7 +31,7 @@ export component AppWindow inherits Window {
                 text: "Calculate";
                 primary: true;
                 height: 35px;
-                clicked => { divide-income(income.text) }
+                clicked => { divide_income(income.text) }
             }
         }
         Row {
