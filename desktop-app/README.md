@@ -1,37 +1,50 @@
-# Slint Rust Template
+# Income & Expense Calculator - Desktop Application
 
-A template for a Rust application that's using [Slint](https://slint.rs/) for the user interface.
+## Overview
 
-## About
+https://github.com/user-attachments/assets/8a133047-6e20-4701-bfdc-e4021bb458fa
 
-This template helps you get started developing a Rust application with Slint as toolkit
-for the user interface. It demonstrates the integration between the `.slint` UI markup and
-Rust code, how to react to callbacks, get and set properties, and use basic widgets.
+**Income & Expense Calculator** is a desktop application built using [SlintUI](https://slint-ui.com/), designed to help you calculate and manage your monthly expenses based on your income. The app allows you to input your total monthly income and categorize your regular expenses (e.g., rent, utilities, groceries, etc.), providing an accurate overview of your remaining balance after all deductions.
 
-## Usage
+The goal of the app is to help users effectively budget their finances, track their expenses, and visualize their monthly cash flow with ease.
 
-1. Install Rust by following its [getting-started guide](https://www.rust-lang.org/learn/get-started).
-   Once this is done, you should have the `rustc` compiler and the `cargo` build system installed in your `PATH`.
-2. Clone or download this repository:
+## Features
+
+- **Simple User Interface**: Built with SlintUI for a clean and responsive interface.
+- **Monthly Income Input**: Easily enter your total monthly income.
+- **Expenses Breakdown**: Output that categorize regular monthly expenses.
+- **Real-time Calculations and report **: Automatic calculation of total expenses and visible report.
+  
+## Technologies Used
+
+- **SlintUI**: For the user interface.
+- **Rust**: For backend logic and application performance.
+- **Cross-platform**: Works on Windows, macOS, and Linux.
+
+## How to Use
+
+1. **Clone or Download the Repository**:
+
+    Clone the project from GitHub using the following command:
+    ```bash
+    git clone https://github.com/FabioDiCeglie/Rust-Projects.git
+    cd desktop-app
     ```
-    git clone https://github.com/slint-ui/slint-rust-template my-project
-    cd my-project    
-    ```
-3. Build with `cargo`:
-    ```
+
+2. **Build with Cargo**:
+
+    Navigate to the project directory and build the application:
+    ```bash
     cargo build
     ```
-4. Run the application binary:
-    ```
+
+3. **Run the Application**:
+
+    After building, run the application using Cargo:
+    ```bash
     cargo run
     ```
 
-We recommend using an IDE for development, along with our [LSP-based IDE integration for `.slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md). You can also load this project directly in [Visual Studio Code](https://code.visualstudio.com) and install our [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).
+4. **Input Monthly Income**:
 
-## Next Steps
-
-We hope that this template helps you get started, and that you enjoy exploring making user interfaces with Slint. To learn more
-about the Slint APIs and the `.slint` markup language, check out our [online documentation](https://slint.dev/docs).
-
-Don't forget to edit this readme to replace it by yours, and edit the `name =` field in `Cargo.toml` to match the name of your
-project.
+    Once the application is running, enter your total monthly income in the designated field, click the button `Calculate` and view summary.
