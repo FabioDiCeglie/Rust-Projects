@@ -5,10 +5,11 @@ use std::error::Error;
 
 slint::include_modules!();
 
-const TAXPER: f64 = 0.30;
-const OWNERPER: f64 = 0.55;
-const PROFITPER: f64 = 0.05;
-const OPEXPER: f64 = 0.10;
+const HOUSE: f64 = 0.35;
+const ME: f64 = 0.35;
+const HEALTH: f64 = 0.05;
+const COMPANY: f64 = 0.05;
+const REST: f64 = 0.20;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let ui = AppWindow::new()?;
@@ -18,11 +19,12 @@ fn main() -> Result<(), Box<dyn Error>> {
         move |string| {
             let ui = ui_handle.unwrap();
             let num : f64 = string.trim().parse().unwrap();
-            let tax: f64 = num * TAXPER;
-            let owner: f64 = num * OWNERPER;
-            let profit: f64 = num * PROFITPER;
-            let opex: f64 = num * OPEXPER;
-            let result = format!("Taxes: {:.2}\nOwner: {:.2}\nProfit: {:.2}\nOpEx: {:.2}", tax, owner, profit, opex);
+            let house: f64 = num * HOUSE;
+            let me: f64 = num * ME;
+            let health: f64 = num * HEALTH;
+            let company: f64 = num * COMPANY;
+            let rest: f64 = num * REST;
+            let result = format!("House: {:.2}\nHealth: {:.2}\nCompany: {:.2}\nMe: {:.2}\nRest: {:.2}", house, health, company, me, rest);
             ui.set_results(result.into());
         }
     });
